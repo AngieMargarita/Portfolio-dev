@@ -20,6 +20,11 @@ const SOCIAL_ICONS:Record<string, any>={
   X,
 
 }
+
+const LinkedInfo = profiles.find(({network}) => network === 'LinkedIn');
+const LinkedUrl=LinkedInfo ?.url
+
+const printInfo =[email,phone,LinkedUrl].filter(Boolean).join(' • ')
 ---
 
 <Section>
@@ -31,7 +36,12 @@ const SOCIAL_ICONS:Record<string, any>={
         <WorldMap />
         {city},{region}
       </span>
-      <footer>
+      <footer class="print " >
+        {printInfo}
+      </footer>
+
+      <footer class="no-print">
+        
         {
           email &&(
             <a href={`mailto:${email}`} 
@@ -71,7 +81,7 @@ const SOCIAL_ICONS:Record<string, any>={
             )
           })
         }
-
+       
       </footer>
     </div>
     <figure>
@@ -127,8 +137,10 @@ span{
 
 footer{
   display: flex;
+  color:#555;
   gap: 4px;
   margin-top: 8px;
+  font-size: 0.65rem;
 }
 
 footer a{
